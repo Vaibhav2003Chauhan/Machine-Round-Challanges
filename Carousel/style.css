@@ -1,0 +1,35 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: rgb(31, 31, 46);
+
+}
+
+.main_container {
+    display: flex;
+    width:80vw;
+    height: 70vh;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(255, 255, 255);
+}
+.carousel-img>img{
+    width:60vw;
+    height: 60vh;
+    transition: opacity 2s ease, transform 0.5s ease;
+}
+#left-btn>button{
+    height: 5vh;
+    width:3vw
+}
+#right-btn>button{
+    height: 5vh;
+    width:3vw
+}
