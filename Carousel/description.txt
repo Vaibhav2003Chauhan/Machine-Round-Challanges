@@ -1,0 +1,1 @@
+This Carousel is one of Machine round Question and we have done it here . A simple carousel and withput using map . next will be map based 
