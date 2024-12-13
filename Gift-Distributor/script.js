@@ -1,5 +1,5 @@
 let all_user = [];
-const gifts = ["Sweets", "watches", "anar", "Chakri", "Laddo"]
+var gifts = ["Sweets", "watches", "anar", "Chakri", "Laddo"]
 var is_gift_assigned = false
 
 function addUser() {
@@ -25,12 +25,28 @@ function addUser() {
         assign_gifts()
     }
 }
+const shuffle = (array) => {
+    for (let i = array.length - 1; i >= 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
 function assign_gifts() {
     is_gift_assigned = true;
-    shuffleArray(gifts);
-    console.log("SHuffled array of Gifts ", gifts)
-    console.log("Assign Gifts!!!!!")
+    console.log("Assign gift invoke")
+    // console.log("THE original array is ", gifts)
+    // gifts = shuffle(gifts);
+    // console.log("SHuffled array of Gifts ", gifts)
+    // console.log("Assign Gifts!!!!!")
+    let user_info = document.getElementsByClassName('mid_box')[0];
+    user_info.innerHTML = " "
+    for (let i = 0; i < all_user.length; i++) {
+        user_info.innerHTML += `<p id="user_info">${all_user[i]} : ${gifts[i]}</p>
+            <button onclick="del_user('${all_user[i]}')" >Remove</button>`
+    }
+
 }
 
 function del_user(username) {
@@ -41,10 +57,33 @@ function del_user(username) {
     console.log(all_user + " The modifies all user array after deletion")
     let user_info = document.getElementsByClassName('mid_box')[0];
     user_info.innerHTML = " ";
-
     for (let i = 0; i < all_user.length; i++) {
-        user_info.innerHTML += `<p id="user_info">${all_user[i]} : No gifts are been assigned </p>
+        if (!is_gift_assigned) {
+            user_info.innerHTML += `<p id="user_info">${all_user[i]} : No gifts are been assigned </p>
             <button onclick="del_user('${all_user[i]}')" >Remove</button>`
+        }
+        else {
+            user_info.innerHTML += `<p id="user_info">${all_user[i]} : ${gifts[i]}</p>
+            <button onclick="del_user('${all_user[i]}')" >Remove</button>`
+        }
+    }
+
+}
+function shuffle_gifts() {
+    console.log("The Original array before the shuffling is as :", gifts);
+    gifts = shuffle(gifts);
+    console.log("The Modified array after the shuffling is as :", gifts);
+    let user_info = document.getElementsByClassName('mid_box')[0];
+    user_info.innerHTML = " ";
+    for (let i = 0; i < all_user.length; i++) {
+        if (!is_gift_assigned) {
+            user_info.innerHTML += `<p id="user_info">${all_user[i]} : No gifts are been assigned </p>
+            <button onclick="del_user('${all_user[i]}')" >Remove</button>`
+        }
+        else {
+            user_info.innerHTML += `<p id="user_info">${all_user[i]} : ${gifts[i]}</p>
+            <button onclick="del_user('${all_user[i]}')" >Remove</button>`
+        }
     }
 
 }
